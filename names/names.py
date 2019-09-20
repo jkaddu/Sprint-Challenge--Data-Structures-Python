@@ -1,5 +1,12 @@
 import time
 
+class BinarySearchTree:
+    def __init__(self, value):
+        self.value = value
+        self.left = left
+        self.right = right
+
+        
 start_time = time.time()
 
 f = open('names_1.txt', 'r')
