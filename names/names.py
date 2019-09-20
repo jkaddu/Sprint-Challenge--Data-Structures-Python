@@ -3,10 +3,10 @@ import time
 class BinarySearchTree:
     def __init__(self, value):
         self.value = value
-        self.left = left
-        self.right = right
+        self.left = None
+        self.right = None
 
-    def insert(self.value):
+    def insert(self, value):
         if value < self.value:
             if not self.left:
                 self.left = BinarySearchTree(value)
@@ -19,7 +19,7 @@ class BinarySearchTree:
             else:
                 self.right.insert(value)
 
-    def contains(self, value): 
+    def contains(self, target): 
         if self.value == target:
             return True
 
@@ -62,12 +62,14 @@ names_2 = f.read().split("\n")  # List containing 10000 names
 f.close()
 
 duplicates = []
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
-
+binarySearchTree = BinarySearchTree(names_2[0])
+for name_1 in names_1[1:]:
+    binarySearchTree.insert(name_1)
+for name_2 in names_2:
+    if binarySearchTree.contains(name_2):
+        duplicates.append(name_2)
+        
 end_time = time.time()
-print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
-print (f"runtime: {end_time - start_time} seconds")
+print ("{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
+print ("runtime: {end_time - start_time} seconds")
 
